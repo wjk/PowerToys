@@ -9,6 +9,7 @@
       <ComponentGroupName>FancyZones</ComponentGroupName>
       <DirectoryRefId>ModulesInstallFolder</DirectoryRefId>
       <Transforms>$(MSBuildProjectDirectory)\Transforms\remove-symbols.xsl</Transforms>
+      <PreprocessorVariable>wix.BinX64Dir.fancy_zones</PreprocessorVariable>
 
       <SuppressCom>true</SuppressCom>
       <SuppressRegistry>true</SuppressRegistry>
@@ -19,6 +20,7 @@
       <ComponentGroupName>ShortcutGuide</ComponentGroupName>
       <DirectoryRefId>ModulesInstallFolder</DirectoryRefId>
       <Transforms>$(MSBuildProjectDirectory)\Transforms\remove-symbols.xsl</Transforms>
+      <PreprocessorVariable>wix.BinX64Dir.shortcut_guide</PreprocessorVariable>
 
       <SuppressCom>true</SuppressCom>
       <SuppressRegistry>true</SuppressRegistry>
@@ -29,6 +31,7 @@
       <ComponentGroupName>TopLevel</ComponentGroupName>
       <DirectoryRefId>INSTALLFOLDER</DirectoryRefId>
       <Transforms>$(MSBuildProjectDirectory)\Transforms\remove-symbols.xsl;$(MSBuildProjectDirectory)\Transforms\add-shortcut.xsl</Transforms>
+      <PreprocessorVariable>wix.BinX64Dir.toplevel</PreprocessorVariable>
 
       <SuppressCom>true</SuppressCom>
       <SuppressRegistry>true</SuppressRegistry>

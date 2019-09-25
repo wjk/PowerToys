@@ -24,6 +24,10 @@
     
     <MediaTemplate EmbedCab="yes" />
 
+    <WixVariable Id="BinX64Dir.fancy_zones" Value="$(var.BinX64Dir)fancy_zones" Overridable="no" />
+    <WixVariable Id="BinX64Dir.shortcut_guide" Value="$(var.BinX64Dir)shortcut_guide" Overridable="no" />
+    <WixVariable Id="BinX64Dir.toplevel" Value="$(var.BinX64Dir)toplevel" Overridable="no" />
+
     <Property Id="WINDOWSBUILDNUMBER" Secure="yes">
       <RegistrySearch Id="BuildNumberSearch" Root="HKLM" Key="SOFTWARE\Microsoft\Windows NT\CurrentVersion" Name="CurrentBuildNumber" Type="raw" />
     </Property>
