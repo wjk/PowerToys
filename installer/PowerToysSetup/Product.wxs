@@ -65,7 +65,7 @@
     <Property Id="CREATESCHEDULEDTASK" Value="1"/>
     <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1"/>
     <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch PowerToys" />
-    <Property Id="WixShellExecTarget" Value="[#PowerToys.exe]" />
+    <Property Id="WixShellExecTarget" Value="[INSTALLFOLDER]PowerToys.exe" />
     <CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
 
     <InstallExecuteSequence>
@@ -85,7 +85,7 @@
 
     <CustomAction Id="SetRegisterPowerToysSchTaskParam"
                   Property="RegisterPowerToysSchTask"
-                  Value="[#PowerToys.exe]" />
+                  Value="[INSTALLFOLDER]PowerToys.exe" />
 
     <!-- Needs to Impersonate="no" and Execute="deferred" in order to run elevated. -->
     <CustomAction Id="RegisterPowerToysSchTask"
