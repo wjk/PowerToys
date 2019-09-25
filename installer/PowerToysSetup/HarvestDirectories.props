@@ -1,6 +1,6 @@
 ﻿<Project>
   <PropertyGroup>
-    <PTRepoDir>$(MSBuildProjectDirectory)..\..\</PTRepoDir>
+    <PTRepoDir>$(MSBuildProjectDirectory)\..\..\</PTRepoDir>
     <PTBinX64Dir>$(PTRepoDir)x64\$(Configuration)\</PTBinX64Dir>
   </PropertyGroup>
   
