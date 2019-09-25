@@ -13,6 +13,17 @@
     <!-- Replace with nothing. -->
   </xsl:template>
 
+  <!-- This part I wrote myself. It removes references to Components deleted above. -->
+  <xsl:key name="component" match="wix:Component" use="@Id" />
+  <xsl:template match="wix:ComponentRef[
+                  contains(concat(key('component', @Id)/wix:File/@Source, '|'), '.lib|') or
+                  contains(concat(key('component', @Id)/wix:File/@Source, '|'), '.exp|') or
+                  contains(concat(key('component', @Id)/wix:File/@Source, '|'), '.pdb|') or
+                  contains(concat(key('component', @Id)/wix:File/@Source, '|'), '.ilk|')
+                ]">
+    <!-- Replace with nothing. -->
+  </xsl:template>
+
   <!-- This part was taken from here: https://stackoverflow.com/questions/35214806/wix-xslt-transform-messing-up-my-formatting -->
   <xsl:template match="@*|node()">
     <xsl:copy>
