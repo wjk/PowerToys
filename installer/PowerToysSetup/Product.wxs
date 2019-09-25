@@ -31,11 +31,13 @@
       <![CDATA[(WINDOWSBUILDNUMBER >= 17134)]]>
     </Condition>
 
-    <Icon Id="powertoys.ico" SourceFile="$(var.BinX64Dir)\svgs\icon.ico"/>
+    <Icon Id="powertoys.ico" SourceFile="$(var.BinX64Dir)toplevel\svgs\icon.ico"/>
     <Property Id="ARPPRODUCTICON" Value="powertoys.ico" />
     <Feature Id="CoreFeature" Title="PowerToys" AllowAdvertise="no" Absent="disallow" TypicalDefault="install"
              Description="Contains the Shortcut Guide and Fancy Zones features.">
-      <ComponentGroupRef Id="CoreComponents" />
+      <ComponentGroupRef Id="FancyZones" />
+      <ComponentGroupRef Id="ShortcutGuide" />
+      <ComponentGroupRef Id="TopLevel" />
     </Feature>
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
     <UI>
@@ -167,11 +169,7 @@
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFiles64Folder">
         <Directory Id="INSTALLFOLDER" Name="PowerToys">
-          <Directory Id="SvgsInstallFolder" Name="svgs"/>
           <Directory Id="ModulesInstallFolder" Name="modules"/>
-          <Directory Id="SettingsHtmlInstallFolder" Name="settings-html">
-            <Directory Id="SettingsHtmlDistInstallFolder" Name="dist"/>
-          </Directory>
         </Directory>
       </Directory>
       <Directory Id="ProgramMenuFolder">
@@ -182,68 +180,6 @@
   </Fragment>
 
   <Fragment>
-    <DirectoryRef Id="INSTALLFOLDER" FileSource="$(var.BinX64Dir)">
-      <Component Id="powertoys_exe" Guid="A2C66D91-3485-4D00-B04D-91844E6B345B" Win64="yes">
-        <File Id="PowerToys.exe" KeyPath="yes" Checksum="yes">
-          <Shortcut Id="ApplicationStartMenuShortcut"
-                    Name="PowerToys"
-                    Description="PowerToys - Windows system utilities to maximize productivity"
-                    Directory="ApplicationProgramsFolder"
-                    WorkingDirectory="INSTALLFOLDER"
-                    Icon="powertoys.ico"
-                    IconIndex="0"
-                    Advertise="yes" />
-        </File>
-
-        <RemoveFolder Id="DeleteShortcutFolder" Directory="ApplicationProgramsFolder" On="uninstall" />
-      </Component>
-      <Component Id="settings_exe" Guid="A5A461A9-7097-4CBA-9D39-3DBBB6B7B80C" Win64="yes">
-        <File Id="PowerToysSettings.exe" KeyPath="yes" Checksum="yes" />
-      </Component>
-      <Component Id="License_rtf" Guid="3E5AE43B-CFB4-449B-A346-94CAAFF3312E" Win64="yes">
-        <File Source="$(var.RepoDir)\License.rtf" Id="License.rtf" KeyPath="yes" />
-      </Component>
-    </DirectoryRef>
-    <DirectoryRef Id="SvgsInstallFolder" FileSource="$(var.BinX64Dir)\svgs\">
-      <Component Id="PowerToysSvgs" Guid="7C4D4EED-9338-423D-992C-DCE02F3E2D35" Win64="yes">
-        <File Source="$(var.BinX64Dir)\svgs\0.svg" />
-        <File Source="$(var.BinX64Dir)\svgs\1.svg" />
-        <File Source="$(var.BinX64Dir)\svgs\2.svg" />
-        <File Source="$(var.BinX64Dir)\svgs\3.svg" />
-        <File Source="$(var.BinX64Dir)\svgs\4.svg" />
-        <File Source="$(var.BinX64Dir)\svgs\5.svg" />
-        <File Source="$(var.BinX64Dir)\svgs\6.svg" />
-        <File Source="$(var.BinX64Dir)\svgs\7.svg" />
-        <File Source="$(var.BinX64Dir)\svgs\8.svg" />
-        <File Source="$(var.BinX64Dir)\svgs\9.svg" />
-        <File Source="$(var.BinX64Dir)\svgs\no_active_window.svg" />
-        <File Source="$(var.BinX64Dir)\svgs\overlay.svg" />
-        <File Source="$(var.BinX64Dir)\svgs\overlay_portrait.svg" />
-      </Component>
-    </DirectoryRef>
-    <DirectoryRef Id="ModulesInstallFolder" FileSource="$(var.BinX64Dir)\modules\">
-      <Component Id="Module_ShortcutGuide" Guid="CBD0AC09-91D3-428E-B2B3-05745ADF3473" Win64="yes">
-        <File Source="$(var.BinX64Dir)\modules\shortcut_guide.dll" KeyPath="yes" />
-      </Component>
-      <Component Id="Module_FancyZones" Guid="C6B5272E-6ED4-4B80-B0E7-2FF0355D8CF4" Win64="yes">
-        <File Source="$(var.BinX64Dir)\modules\fancyzones.dll" KeyPath="yes" />
-        <File Source="$(var.BinX64Dir)\modules\FancyZonesEditor.exe" />
-        <File Source="$(var.BinX64Dir)\modules\ControlzEx.dll" />
-        <File Source="$(var.BinX64Dir)\modules\MahApps.Metro.dll" />
-        <File Source="$(var.BinX64Dir)\modules\Microsoft.Xaml.Behaviors.dll" />
-      </Component>
-    </DirectoryRef>
-    <DirectoryRef Id="SettingsHtmlInstallFolder" FileSource="$(var.RepoDir)\editor\settings-html\">
-      <Component Id="settings_html" Guid="87881A99-E917-4B0D-B1D8-5C6EB9709F96" Win64="yes">
-        <File Source="$(var.RepoDir)\src\editor\settings-html\index.html" KeyPath="yes" />
-      </Component>
-    </DirectoryRef>
-    <DirectoryRef Id="SettingsHtmlDistInstallFolder" FileSource="$(var.RepoDir)\editor\settings-html\dist\">
-      <Component Id="settings_js_bundle" Guid="9EF539C1-2F50-421E-B074-C58ED3A9785C" Win64="yes">
-        <File Source="$(var.RepoDir)\src\editor\settings-html\dist\bundle.js" KeyPath="yes" />
-      </Component>
-    </DirectoryRef>
-
     <DirectoryRef Id="DesktopFolder">
       <Component Id="DesktopShortcut" Guid="87321F2B-CC48-4326-881E-9C62CC260DC8">
         <Condition>INSTALLDESKTOPSHORTCUT</Condition>
@@ -256,25 +192,11 @@
         <Shortcut Id="DesktopShortcutId"
                   Name="PowerToys"
                   Description="PowerToys - Windows system utilities to maximize productivity"
-                  Target="[!PowerToys.exe]"
+                  Target="[INSTALLFOLDER]\PowerToys.exe"
                   WorkingDirectory="INSTALLFOLDER"
                   Icon="powertoys.ico"
                   Directory="DesktopFolder"/>
       </Component>
     </DirectoryRef>
-  </Fragment>
-
-  <Fragment>
-    <ComponentGroup Id="CoreComponents" Directory="INSTALLFOLDER">
-      <ComponentRef Id="powertoys_exe" />
-      <ComponentRef Id="License_rtf" />
-      <ComponentRef Id="PowerToysSvgs" />
-      <ComponentRef Id="Module_ShortcutGuide" />
-      <ComponentRef Id="Module_FancyZones" />
-      <ComponentRef Id="DesktopShortcut" />
-      <ComponentRef Id="settings_exe" />
-      <ComponentRef Id="settings_html" />
-      <ComponentRef Id="settings_js_bundle" />
-    </ComponentGroup>
   </Fragment>
 </Wix>
