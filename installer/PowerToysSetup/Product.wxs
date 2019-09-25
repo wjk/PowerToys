@@ -39,9 +39,9 @@
     <Property Id="ARPPRODUCTICON" Value="powertoys.ico" />
     <Feature Id="CoreFeature" Title="PowerToys" AllowAdvertise="no" Absent="disallow" TypicalDefault="install"
              Description="Contains the Shortcut Guide and Fancy Zones features.">
-      <ComponentGroupRef Id="FancyZones" />
-      <ComponentGroupRef Id="ShortcutGuide" />
-      <ComponentGroupRef Id="TopLevel" />
+      <ComponentGroupRef Id="Core.FancyZones" />
+      <ComponentGroupRef Id="Core.ShortcutGuide" />
+      <ComponentGroupRef Id="Core.TopLevel" />
     </Feature>
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
     <UI>

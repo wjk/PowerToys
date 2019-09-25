@@ -6,7 +6,7 @@
   
   <ItemGroup>
     <HarvestDirectory Include="$(PTBinX64Dir)fancy_zones">
-      <ComponentGroupName>FancyZones</ComponentGroupName>
+      <ComponentGroupName>Core.FancyZones</ComponentGroupName>
       <DirectoryRefId>ModulesInstallFolder</DirectoryRefId>
       <Transforms>$(MSBuildProjectDirectory)\Transforms\remove-symbols.xsl</Transforms>
       <PreprocessorVariable>wix.BinX64Dir.fancy_zones</PreprocessorVariable>
@@ -17,7 +17,7 @@
     </HarvestDirectory>
 
     <HarvestDirectory Include="$(PTBinX64Dir)shortcut_guide">
-      <ComponentGroupName>ShortcutGuide</ComponentGroupName>
+      <ComponentGroupName>Core.ShortcutGuide</ComponentGroupName>
       <DirectoryRefId>ModulesInstallFolder</DirectoryRefId>
       <Transforms>$(MSBuildProjectDirectory)\Transforms\remove-symbols.xsl</Transforms>
       <PreprocessorVariable>wix.BinX64Dir.shortcut_guide</PreprocessorVariable>
@@ -28,7 +28,7 @@
     </HarvestDirectory>
 
     <HarvestDirectory Include="$(PTBinX64Dir)toplevel">
-      <ComponentGroupName>TopLevel</ComponentGroupName>
+      <ComponentGroupName>Core.TopLevel</ComponentGroupName>
       <DirectoryRefId>INSTALLFOLDER</DirectoryRefId>
       <Transforms>$(MSBuildProjectDirectory)\Transforms\remove-symbols.xsl;$(MSBuildProjectDirectory)\Transforms\add-shortcut.xsl</Transforms>
       <PreprocessorVariable>wix.BinX64Dir.toplevel</PreprocessorVariable>
