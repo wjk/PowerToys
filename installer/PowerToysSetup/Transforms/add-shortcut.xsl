@@ -11,15 +11,13 @@
 
       <!-- Then, add the below tags to the end. -->
       <wix:Shortcut Id="ApplicationStartMenuShortcut"
-                Name="PowerToys"
-                Description="PowerToys - Windows system utilities to maximize productivity"
-                Directory="ApplicationProgramsFolder"
-                Icon="powertoys.ico"
-                IconIndex="0"
-                Advertise="yes">
-        <!-- Keep this all on one line, please. -->
-        <xsl:attribute name="WorkingDirectory"><xsl:value-of select="@Directory"/></xsl:attribute>
-      </wix:Shortcut>
+                    Name="PowerToys"
+                    Description="PowerToys - Windows system utilities to maximize productivity"
+                    WorkingDirectory="INSTALLFOLDER"
+                    Directory="ApplicationProgramsFolder"
+                    Icon="powertoys.ico"
+                    IconIndex="0"
+                    Advertise="yes" />
 
       <wix:RemoveFolder Id="DeleteShortcutFolder" Directory="ApplicationProgramsFolder" On="uninstall" />
     </xsl:copy>
