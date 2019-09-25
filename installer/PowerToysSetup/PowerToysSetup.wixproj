@@ -49,9 +49,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Transforms\add-shortcut.xsl" />
-    <Content Include="Transforms\remove-symbols.xsl" />
+    <None Include="HarvestDirectories.props" />
+    <None Include="Transforms\add-shortcut.xsl" />
+    <None Include="Transforms\remove-symbols.xsl" />
   </ItemGroup>
+  <Import Project="HarvestDirectories.props" />
   <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
   <Target Name="EnsureWixToolsetInstalled" Condition=" '$(WixTargetsImported)' != 'true' ">
