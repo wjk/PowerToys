@@ -8,7 +8,7 @@
     <HarvestDirectory Include="$(PTBinX64Dir)fancy_zones">
       <ComponentGroupName>FancyZones</ComponentGroupName>
       <DirectoryRefId>ModulesInstallFolder</DirectoryRefId>
-      <Transforms>Transforms\remove-symbols.xsl</Transforms>
+      <Transforms>$(MSBuildProjectDirectory)\Transforms\remove-symbols.xsl</Transforms>
 
       <SuppressCom>true</SuppressCom>
       <SuppressRegistry>true</SuppressRegistry>
@@ -18,7 +18,7 @@
     <HarvestDirectory Include="$(PTBinX64Dir)shortcut_guide">
       <ComponentGroupName>ShortcutGuide</ComponentGroupName>
       <DirectoryRefId>ModulesInstallFolder</DirectoryRefId>
-      <Transforms>Transforms\remove-symbols.xsl</Transforms>
+      <Transforms>$(MSBuildProjectDirectory)\Transforms\remove-symbols.xsl</Transforms>
 
       <SuppressCom>true</SuppressCom>
       <SuppressRegistry>true</SuppressRegistry>
@@ -28,7 +28,7 @@
     <HarvestDirectory Include="$(PTBinX64Dir)toplevel">
       <ComponentGroupName>TopLevel</ComponentGroupName>
       <DirectoryRefId>INSTALLFOLDER</DirectoryRefId>
-      <Transforms>Transforms\remove-symbols.xsl;Transforms\add-shortcut.xsl</Transforms>
+      <Transforms>$(MSBuildProjectDirectory)\Transforms\remove-symbols.xsl;$(MSBuildProjectDirectory)\Transforms\add-shortcut.xsl</Transforms>
 
       <SuppressCom>true</SuppressCom>
       <SuppressRegistry>true</SuppressRegistry>
