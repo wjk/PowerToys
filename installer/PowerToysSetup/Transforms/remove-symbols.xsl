@@ -6,6 +6,7 @@
   <!-- This part was taken from here: https://stackoverflow.com/questions/26432307/can-i-optionally-include-specific-file-extensions-with-wix-heat-using-transforms -->
   <xsl:template match="wix:Component[
                   contains(concat(wix:File/@Source, '|'), '.lib|') or
+                  contains(concat(wix:File/@Source, '|'), '.exp|') or
                   contains(concat(wix:File/@Source, '|'), '.pdb|') or
                   contains(concat(wix:File/@Source, '|'), '.ilk|')
                 ]">
